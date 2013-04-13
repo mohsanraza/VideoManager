@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ASP.NET Web API</title>
+    <link href="http://vjs.zencdn.net/c/video-js.css" rel="stylesheet">
+<script src="http://vjs.zencdn.net/c/video.js"></script>
+    <link href="../../Content/Site.css" rel="stylesheet" />
+    <script src="../../Scripts/jquery-1.7.1.min.js" 
+        type="text/javascript"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                // Send an AJAX request
+                $.getJSON("api/video/",
+                function (data) {
+                    // On success, 'data' contains a list of products.
+                    $.each(data, function (key, val) {
+                        var str = "<video id=my_video_1 class=\"video-js vjs-default-skin\" controls preload=\"auto\" width=\"264\" height=\"264\" poster="  + val.VideoImagePath + " data-setup=\"{}\"> <source src=" + val.VideoPath + "type='video/mp4'></video>"
+                        $('<li/>', { html: str })
+                        .appendTo($('#products'));
+                    });
+                });
+            });
+
+            function find() {
+                var id = $('#prodId').val();
+                $.getJSON("api/video/" + id,
+                    function (data) {
+                        var str = data.Name + ': $' + data.Price;
+                        $('#product').html(str);
+                    })
+                .fail(
+                    function (jqXHR, textStatus, err) {
+                        $('#product').html('Error: ' + err);
+                    });
+            }
+
+            function addVideo() {
+                var VideoCreate = {
+                    //VideoID: "ac454c16-6e4d-49e6-9678-474cbd2bc000",
+                    UserName: $('#UserName').val(),
+                    Country: $('#Country').val(),
+                    City: $('#City').val(),
+                    VideoDescription: $('#VideoDescription').val(),
+                    VideoImageFile: $('#VideoImageFile').prop("files")[0],
+                    VideoFile: $('#VideoFile').prop("files")[0],
+                    //uploadedFile: $('#file3').val()
+                };
+
+                $.ajax({
+
+                    url: "/api/video",
+                    data: JSON.stringify(VideoCreate),
+                    type: "POST",
+                    dataType: 'json',
+                    //contentType: 'multipart/form-data',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    statusCode: {
+                        201: function (newCustomer) {
+                            callback(newCustomer);
+                        }
+                    }
+                });
+
+            }
+
+
+        </script>
+
+</head>
+<body id="body" >
+    <div class="main-content">
+        <div>
+            <h1>Videos</h1>
+            
+            <ul  id="products"/>
+                
+        </div>
+    <!--    <div>
+            <label for="prodId">ID:</label>
+            <input type="text" id="prodId" size="5"/>
+            <input type="button" value="Search" onclick="find();" />
+            
+            <p id="product" />
+        </div>-->
+
+        <div>
+            <section class="main-content clear-fix">
+<form name="form1" method="post" action="api/video" enctype="multipart/form-data">
+    <fieldset>
+        <div>
+            <label for="UserName">User Name:</label>
+            <input type="text" id="UserName" name="UserName"/>
+            </div><div>
+            <label for="Country">Country:</label>
+            <input type="text" id="Country" name="Country" />
+            </div><div>
+                <label for="City">City:</label>
+            <input type="text" id="City" name="City"/>
+            </div><div>
+                <label for="VideoDescription">Video Description:</label>
+            <input type="text" id="VideoDescription" name="VideoDescription"/>
+            </div><div>
+                <label for="VideoImageFile">Video Thumbnail Image:</label>
+            <input type="file" id="VideoImageFile" name="VideoImageFile" />
+            </div><div>
+                <label for="VideoFile">Video File:</label>
+            <input type="file" id="VideoFile" name="VideoFile" />
+                </div><div>
+            <input type="submit" value="Submit" />
+                    </div>
+        </fieldset>
+    </form>
+ </section>
+          <!-- <input type="button" value="Add Video" onclick="addVideo();" />-->
+        </div>
+    </div>
+</body>
+</html>

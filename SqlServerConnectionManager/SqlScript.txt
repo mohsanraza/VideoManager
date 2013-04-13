@@ -1,0 +1,69 @@
+﻿
+use VideoManager
+
+go
+
+drop table [dbo].[VM_Videos]
+go 
+
+drop Procedure Proc_VM_AddNewVideo
+
+go 
+
+
+CREATE TABLE [dbo].[VM_Videos](
+	[VideoID] [UniqueIdentifier] NOT NULL,
+	[UserName] [nchar](30) NOT NULL,
+	[Country] [nchar](30) NOT NULL,
+	[City] [nchar](30) NOT NULL,
+	[VideoDescription] [nchar](50) NOT NULL,
+	[VideoImagePath] [nchar](100) NOT NULL,
+	[VideoPath] [nchar](100) NOT NULL,
+	[Date] [datetime] NOT NULL,
+ CONSTRAINT [PK_VM_Videos] PRIMARY KEY CLUSTERED 
+(
+	[VideoID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+go
+
+create Procedure Proc_VM_AddNewVideo
+       
+@VideoID UniqueIdentifier,  
+@UserName nchar(30),
+@Country nchar(30),
+@City nchar(30),
+@VideoDescription nchar(50),
+@VideoImagePath nchar(100),
+@VideoPath nchar(100),
+@UpDate datetime     
+
+as    
+SET NOCOUNT ON;    
+
+--Declare @PortingJobDetailId uniqueidentifier
+--set @PortingJobDetailId=NEWID();
+
+INSERT INTO [dbo].[VM_Videos]    
+           (    
+            [VideoID]    
+           ,[UserName]    
+           ,[Country]    
+           ,[City]    
+           ,[VideoDescription]  
+           ,[VideoImagePath]    
+           ,[VideoPath]    
+           ,[Date])  
+     VALUES    
+           (    
+@VideoID ,  
+@UserName,
+@Country,
+@City ,
+@VideoDescription,
+@VideoImagePath,
+@VideoPath,
+@UpDate
+)
+

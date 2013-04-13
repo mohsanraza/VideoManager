@@ -10,6 +10,9 @@ using System.IO;
 
 namespace VideoManager.Logging
 {
+    /// <summary>
+    /// Logger setup contractor
+    /// </summary>
     public class Logger
     {
         public static ILog log = log4net.LogManager.GetLogger(typeof(Logger));
@@ -28,7 +31,7 @@ namespace VideoManager.Logging
 
                 FileInfo info = new FileInfo(Path.Combine(theDirectory, "Logger.dll.config"));
                 if(!info.Exists)
-                    info = new FileInfo(Path.Combine(@"D:\Projects\Assignment\VideoManager\Logging\bin\Debug", "Logger.dll.config"));
+                    info = new FileInfo(Path.Combine(@"D:\Projects\Assignment\VideoManager\Logging\bin\Debug", "Logger.dll.config"));//TODO: use relative path
                 log4net.Config.XmlConfigurator.Configure(info);
 
 

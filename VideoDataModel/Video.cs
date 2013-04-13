@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace VideoManager.VideoDataModel
 {
+    /// <summary>
+    /// Video datamodel
+    /// </summary>
     public class Video
     {
         Guid _videoID;

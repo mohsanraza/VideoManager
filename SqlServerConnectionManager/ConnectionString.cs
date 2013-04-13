@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace VideoManager.SqlServerConnectionManager
 {
+    /// <summary>
+    /// Connection string manager
+    /// </summary>
     public class ConnectionString 
     {
         /// <summary>

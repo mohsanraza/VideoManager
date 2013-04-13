@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using VideoManager.SqlServerConnectionManager;
 namespace VideoManager.DataAccessLayer
 {
+    /// <summary>
+    /// Data manager responsible for SQL transctions
+    /// </summary>
     public class DataManager
     {
         /// <summary>

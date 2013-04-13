@@ -11,6 +11,9 @@ using VideoManager.Logging;
 using VideoManager.VideoDataModel;
 namespace VideoManager.DataAccessLayer
 {
+    /// <summary>
+    /// Data access for business layer
+    /// </summary>
     public class DataAccess
     {
         /// <summary>

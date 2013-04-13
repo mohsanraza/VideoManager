@@ -10,6 +10,9 @@ using VideoManager.VideoDataModel;
 
 namespace VideoManager.BusinessLayer
 {
+    /// <summary>
+    /// Business layer - container of all business processes and data validations
+    /// </summary>
     public class BusinessLayer
     {
         /// <summary>

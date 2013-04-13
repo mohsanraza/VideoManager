@@ -17,6 +17,9 @@ using VideoManager.VideoDataModel;
 
 namespace VideoManager.Controllers
 {
+    /// <summary>
+    /// Video APIs
+    /// </summary>
     public class VideoController : ApiController
     {
         
